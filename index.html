@@ -4,134 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiorella Handmade Accessories - إكسسوارات فوريلا</title>
-    <!-- تضمين مكتبة التصميم Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-
-    <!-- شريط التنقل العلوي -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-pink-600">Fiorella</h1>
-            <nav class="hidden md:flex space-x-6 space-x-reverse text-sm font-medium">
-                <a href="#products" class="hover:text-pink-600 transition">المجموعة الجديدة</a>
-                <a href="#about" class="hover:text-pink-600 transition">من نحن</a>
-                <a href="#contact" class="hover:text-pink-600 transition">تواصل معنا</a>
-            </nav>
-            <span class="text-xs bg-pink-100 text-pink-700 px-3 py-1 rounded-full font-semibold">إكسسوارات يدوية</span>
-        </div>
-    </header>
-
-    <!-- القسم الرئيسي (Hero Section) -->
-    <section class="bg-pink-50 py-16 px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-4">أجمل الإكسسوارات اليدوية المصممة خصيصاً لك</h2>
-            <p class="text-lg text-gray-600 mb-8">علامة تجارية متخصصة في تصميم وصنع الإكسسوارات البديلة بكل شغف وحب لتكمل جمالك اليومي.</p>
-            <a href="#products" class="bg-pink-600 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-pink-700 transition">تسوق الان</a>
-        </div>
-    </section>
-
-    <!-- قسم المنتجات -->
-    <main id="products" class="max-w-6xl mx-auto px-4 py-16">
-        <h3 class="text-2xl font-bold text-center mb-10 text-gray-900">المجموعة الجديدة</h3>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            <!-- منتج 1 -->
-            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition">
-                <div class="h-56 bg-pink-100 flex items-center justify-center text-pink-400 font-bold">صورة المنتج</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-lg mb-2">عقد مرصع باللؤلؤ</h4>
-                    <p class="text-gray-500 text-sm mb-4">تصميم يدوي فاخر يناسب جميع المناسبات الخاصة.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-pink-600 font-bold text-lg">250 ج.م</span>
-                        <button onclick="addToCart('عقد مرصع باللؤلؤ', 250)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- منتج 2 -->
-            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition">
-                <div class="h-56 bg-pink-100 flex items-center justify-center text-pink-400 font-bold">صورة المنتج</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-lg mb-2">أسورة هاند ميد بحليات</h4>
-                    <p class="text-gray-500 text-sm mb-4">مصنوعة بعناية فائقة لتضفي بريقاً على إطلالتك.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-pink-600 font-bold text-lg">120 ج.م</span>
-                        <button onclick="addToCart('أسورة هاند ميد', 120)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- منتج 3 -->
-            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition">
-                <div class="h-56 bg-pink-100 flex items-center justify-center text-pink-400 font-bold">صورة المنتج</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-lg mb-2">خاتم فضي أنيق</h4>
-                    <p class="text-gray-500 text-sm mb-4">تصميم عصري بسيط يناسب الاستخدام اليومي.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-pink-600 font-bold text-lg">90 ج.م</span>
-                        <button onclick="addToCart('خاتم فضي أنيق', 90)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- قسم إتمام الطلب البسيط -->
-    <section class="bg-white py-12 border-t border-gray-100">
-        <div class="max-w-xl mx-auto px-4">
-            <h3 class="text-xl font-bold mb-6 text-center">أكد طلبك الآن</h3>
-            <div id="cart-summary" class="bg-gray-50 p-4 rounded-xl mb-4 text-sm text-gray-600 text-center">
-                لم تقم باختيار أي منتج بعد.
-            </div>
-            <form onsubmit="checkout(event)" class="space-y-4">
-                <input type="text" id="name" placeholder="الاسم بالكامل" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500">
-                <input type="tel" id="phone" placeholder="رقم الهاتف (للتأكيد والواتساب)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500">
-                <textarea id="address" placeholder="العنوان التفصيلي" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500"></textarea>
-                <button type="submit" class="w-full bg-pink-600 text-white py-3 rounded-xl font-bold hover:bg-pink-700 transition">تأكيد الطلب الآن</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- الفوتر (Footer) -->
-    <footer id="contact" class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
-        <p class="mb-2">خدمة العملاء متاحة يومياً من 10 صباحاً - 10 مساءً</p>
-        <p>&copy; <span id="year"></span> Fiorella Handmade - جميع الحقوق محفوظة</p>
-    </footer>
-
-    <!-- سكربت بسيط لتفاعل الموقع -->
-    <script>
-        document.getElementById('year').innerText = new Date().getFullYear();
-        let selectedProduct = "";
-
-        function addToCart(productName, price) {
-            selectedProduct = productName + " - " + price + " ج.م";
-            document.getElementById('cart-summary').innerText = "المنتج المختار: " + selectedProduct;
-            alert("تم إضافة " + productName + " إلى سلة الطلبات بنجاح!");
-        }
-
-        function checkout(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-
-            if(!selectedProduct) {
-                alert("برجاء اختيار منتج أولاً قبل تأكيد الطلب.");
-                return;
-            }
-
-            alert("شكراً لك يا " + name + "! تم استلام طلبك بنجاح، سنتواصل معك عبر الهاتف والتطبيق لتأكيد الشحن.");
-        }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiorella Handmade Accessories - إكسسوارات فوريلا</title>
     <!-- مكتبة التصميم Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -150,4 +22,121 @@
     </header>
 
     <!-- الواجهة الرئيسية -->
+    <section class="bg-pink-50 py-16 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4">تشكيلة إكسسوارات هاند ميد أنيقة</h2>
+            <p class="text-lg text-gray-600 mb-8">تصاميم عصرية مميزة مصنوعة يدويًا بحب وشغف لتبرز جمال إطلالتك.</p>
+            <a href="#products" class="bg-pink-600 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-pink-700 transition">تسوقي الآن</a>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <main id="products" class="max-w-6xl mx-auto px-4 py-16">
+        <h3 class="text-2xl font-bold text-center mb-10 text-gray-900">المجموعة الجديدة</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            
+            <!-- المنتج 1: عقد بخرز ملون وودعة -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition flex flex-col justify-between">
+                <div class="h-72 overflow-hidden bg-gray-100">
+                    <img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=600" alt="عقد الشاطئ الصيفي بحلية الودعة" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">عقد صيفي متعدد الطبقات مع ودعة</h4>
+                        <p class="text-gray-500 text-sm mb-4">عقد أنيق بخرز درجات البرتقالي والأحمر مع حلية ودعة طبيعية وإيموجي سعيد.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-50">
+                        <span class="text-pink-600 font-bold text-lg">180 ج.م</span>
+                        <button onclick="addToCart('عقد صيفي متعدد الطبقات مع ودعة', 180)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المنتج 2: عقد الخرز الأزرق مع ورود زهرة الأقحوان (عرض المانيكان) -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition flex flex-col justify-between">
+                <div class="h-72 overflow-hidden bg-gray-100">
+                    <img src="https://images.pexels.com/photos/1458867/pexels-photo-1458867.jpeg?auto=compress&cs=tinysrgb&w=600" alt="عقد بخرز أزرق وزهور الأقحوان" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">عقد الخرز الأزرق بورد الأقحوان</h4>
+                        <p class="text-gray-500 text-sm mb-4">عقد هاند ميد ناعم بخرز أزرق وتفاصيل ورود بيضاء بتصميم كلاسيكي ورقيق.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-50">
+                        <span class="text-pink-600 font-bold text-lg">120 ج.م</span>
+                        <button onclick="addToCart('عقد الخرز الأزرق بورد الأقحوان', 120)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المنتج 3: شوكر الخرز الأزرق والورود (إطلالة الموديل) -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition flex flex-col justify-between">
+                <div class="h-72 overflow-hidden bg-gray-100">
+                    <img src="https://images.pexels.com/photos/1191536/pexels-photo-1191536.jpeg?auto=compress&cs=tinysrgb&w=600" alt="شوكر الخرز الأزرق ورقيق الأقحوان" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">شوكر الورد الأزرق (Choker)</h4>
+                        <p class="text-gray-500 text-sm mb-4">عقد قصير ينطبق على الرقبة بشكل مريح وبلمسة أنثوية بسيطة للمناسبات اليومية.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-50">
+                        <span class="text-pink-600 font-bold text-lg">130 ج.م</span>
+                        <button onclick="addToCart('شوكر الورد الأزرق', 130)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- قسم الطلب -->
+    <section class="bg-white py-12 border-t border-gray-100">
+        <div class="max-w-xl mx-auto px-4">
+            <h3 class="text-xl font-bold mb-6 text-center">أكدي طلبك الآن</h3>
+            <div id="cart-summary" class="bg-pink-50 border border-pink-100 p-4 rounded-xl mb-4 text-sm text-pink-800 font-medium text-center">
+                لم تقومي باختيار أي منتج بعد.
+            </div>
+            <form onsubmit="checkout(event)" class="space-y-4">
+                <input type="text" id="name" placeholder="الاسم بالكامل" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500">
+                <input type="tel" id="phone" placeholder="رقم الهاتف (للتأكيد والواتساب)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500">
+                <textarea id="address" placeholder="العنوان التفصيلي" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500"></textarea>
+                <button type="submit" class="w-full bg-pink-600 text-white py-3 rounded-xl font-bold hover:bg-pink-700 transition shadow-lg">تأكيد الطلب</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer id="contact" class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <p class="mb-2">خدمة العملاء متاحة يومياً عبر الواتساب</p>
+        <p>&copy; <span id="year"></span> Fiorella Handmade Accessories - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <!-- سكربت تفاعل السلة -->
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+        let selectedProduct = "";
+
+        function addToCart(productName, price) {
+            selectedProduct = productName + " بسعر " + price + " ج.م";
+            document.getElementById('cart-summary').innerText = "المنتج المختار: " + selectedProduct;
+            alert("تم إضافة " + productName + " إلى سلة الطلبات!");
+        }
+
+        function checkout(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if(!selectedProduct) {
+                alert("برجاء اختيار منتج أولاً بالنقر على 'إضافة للسلة'");
+                return;
+            }
+
+            alert("شكراً لكِ يا " + name + "! تم استلام طلبك لـ (" + selectedProduct + ") بنجاح. سنتواصل معكِ قريباً على الرقم " + phone);
+        }
+    </script>
+</body>
+</html>
+
 
