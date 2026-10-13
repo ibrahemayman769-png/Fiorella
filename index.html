@@ -1,168 +1,129 @@
-              <div className="p-8 text-center space-y-4">
-                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-                  <Check size={32} />
-                </div>
-                <h4 className="text-xl font-bold text-[#3D312E]">تم استلام طلبك بنجاح!</h4>
-                <p className="text-xs text-[#6D5C56]">
-                  رقم المرجع الخاص بك: <strong className="text-[#E29578] font-mono text-sm">{orderRef}</strong>
-                </p>
-                <p className="text-xs text-[#8C7A70]">سنتواصل معكِ عبر الهاتف وتطبيق الواتساب للتأكيد قبل الشحن.</p>
-                <button 
-                  onClick={() => {
-                    setOrderPlaced(false);
-                    setIsCheckoutOpen(false);
-                  }}
-                  className="bg-[#E29578] text-white font-bold text-xs px-6 py-2.5 rounded-xl mt-4"
-                >
-                  العودة للتسوق
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleCheckoutSubmit} className="p-6 space-y-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#3D312E] mb-1">الاسم بالكامل</label>
-                  <input 
-                    type="text" 
-                    required 
-                    placeholder="مثال: سارة أحمد"
-                    value={checkoutData.name}
-                    onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-[#E0D5C5] rounded-xl focus:outline-none focus:border-[#E29578]"
-                  />
-                </div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiorella Handmade Accessories - إكسسوارات فوريلا</title>
+    <!-- تضمين مكتبة التصميم Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-                <div>
-                  <label className="block text-xs font-bold text-[#3D312E] mb-1">رقم الهاتف (للتأكيد والواتساب)</label>
-                  <input 
-                    type="tel" 
-                    required 
-                    placeholder="010XXXXXXXX"
-                    value={checkoutData.phone}
-                    onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-[#E0D5C5] rounded-xl focus:outline-none focus:border-[#E29578]"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-bold text-[#3D312E] mb-1">المحافظة</label>
-                    <select 
-                      value={checkoutData.city}
-                      onChange={(e) => setCheckoutData({...checkoutData, city: e.target.value})}
-                      className="w-full text-xs p-2.5 border border-[#E0D5C5] rounded-xl focus:outline-none focus:border-[#E29578] bg-white"
-                    >
-                      <option value="القاهرة">القاهرة</option>
-                      <option value="الجيزة">الجيزة</option>
-                      <option value="الإسكندرية">الإسكندرية</option>
-                      <option value="الشرقية">الشرقية</option>
-                      <option value="محافظة أخرى">محافظة أخرى</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-[#3D312E] mb-1">العنوان التفصيلي</label>
-                    <input 
-                      type="text" 
-                      required 
-                      placeholder="الشارع - العمارة - الشقة"
-                      value={checkoutData.address}
-                      onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})}
-                      className="w-full text-xs p-2.5 border border-[#E0D5C5] rounded-xl focus:outline-none focus:border-[#E29578]"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-[#3D312E] mb-1">طريقة الدفع</label>
-                  <div className="grid grid-cols-2 gap-2 mt-1">
-                    <label className={`border p-2.5 rounded-xl text-xs flex items-center gap-2 cursor-pointer ${checkoutData.paymentMethod === 'cod' ? 'border-[#E29578] bg-[#FAF7F2]' : 'border-[#E0D5C5]'}`}>
-                      <input 
-                        type="radio" 
-                        name="payment" 
-                        value="cod" 
-                        checked={checkoutData.paymentMethod === 'cod'} 
-                        onChange={() => setCheckoutData({...checkoutData, paymentMethod: 'cod'})} 
-                      />
-                      <span>كاش عند الاستلام</span>
-                    </label>
-
-                    <label className={`border p-2.5 rounded-xl text-xs flex items-center gap-2 cursor-pointer ${checkoutData.paymentMethod === 'vodafone' ? 'border-[#E29578] bg-[#FAF7F2]' : 'border-[#E0D5C5]'}`}>
-                      <input 
-                        type="radio" 
-                        name="payment" 
-                        value="vodafone" 
-                        checked={checkoutData.paymentMethod === 'vodafone'} 
-                        onChange={() => setCheckoutData({...checkoutData, paymentMethod: 'vodafone'})} 
-                      />
-                      <span>فودافون كاش</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-[#EADECF] flex justify-between items-center">
-                  <div>
-                    <span className="text-xs text-[#7A6B63]">إجمالي المطلوب:</span>
-                    <p className="text-base font-extrabold text-[#E29578]">{grandTotal} ج.م</p>
-                  </div>
-                  <button 
-                    type="submit"
-                    className="bg-[#E29578] hover:bg-[#D07C5F] text-white font-bold text-xs px-6 py-3 rounded-xl transition"
-                  >
-                    تأكيد الطلب الآن
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-pink-600">Fiorella</h1>
+            <nav class="hidden md:flex space-x-6 space-x-reverse text-sm font-medium">
+                <a href="#products" class="hover:text-pink-600 transition">المجموعة الجديدة</a>
+                <a href="#about" class="hover:text-pink-600 transition">من نحن</a>
+                <a href="#contact" class="hover:text-pink-600 transition">تواصل معنا</a>
+            </nav>
+            <span class="text-xs bg-pink-100 text-pink-700 px-3 py-1 rounded-full font-semibold">إكسسوارات يدوية</span>
         </div>
-      )}button>
-                </div>
-              </form>
-            )}
-          </div>
+    </header>
+
+    <!-- القسم الرئيسي (Hero Section) -->
+    <section class="bg-pink-50 py-16 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4">أجمل الإكسسوارات اليدوية المصممة خصيصاً لك</h2>
+            <p class="text-lg text-gray-600 mb-8">علامة تجارية متخصصة في تصميم وصنع الإكسسوارات البديلة بكل شغف وحب لتكمل جمالك اليومي.</p>
+            <a href="#products" class="bg-pink-600 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-pink-700 transition">تسوق الان</a>
         </div>
-      )}
+    </section>
 
-      {}
-      <footer className="bg-[#3D312E] text-[#F3E5D8] py-12 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-xs">
-          <div className="space-y-3">
-            <h4 className="text-base font-bold text-white font-serif">لومينا للإكسسوارات اليدوية</h4>
-            <p className="text-[#BCAEA5] leading-relaxed">
-              علامة تجارية متخصصة في تصميم وصنع الإكسسوارات اليدوية بكل شغف وحب لتكمل جمالك اليومي.
-            </p>
-          </div>
-
-          <div>
-            <h5 className="font-bold text-white mb-3 text-sm">روابط سريعة</h5>
-            <ul className="space-y-2 text-[#BCAEA5]">
-              <li><a href="#products" className="hover:text-white">المجموعة الجديدة</a></li>
-              <li><a href="#products" className="hover:text-white">عقود وسلاسل</a></li>
-              <li><a href="#products" className="hover:text-white">أساور هاند ميد</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-bold text-white mb-3 text-sm">خدمة العملاء</h5>
-            <ul className="space-y-2 text-[#BCAEA5]">
-              <li>سياسة الشحن والتوصيل</li>
-              <li>طريقة العناية بالإكسسوارات</li>
-              <li>الأسئلة الشائعة</li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-bold text-white mb-3 text-sm">تواصلي معنا</h5>
-            <div className="flex gap-3 mb-3">
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[#E29578] transition"><Instagram size={16} /></a>
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[#E29578] transition"><Facebook size={16} /></a>
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[#E29578] transition"><Phone size={16} /></a>
+    <!-- قسم المنتجات -->
+    <main id="products" class="max-w-6xl mx-auto px-4 py-16">
+        <h3 class="text-2xl font-bold text-center mb-10 text-gray-900">المجموعة الجديدة</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <!-- منتج 1 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition">
+                <div class="h-56 bg-pink-100 flex items-center justify-center text-pink-400 font-bold">صورة المنتج</div>
+                <div class="p-5">
+                    <h4 class="font-bold text-lg mb-2">عقد مرصع باللؤلؤ</h4>
+                    <p class="text-gray-500 text-sm mb-4">تصميم يدوي فاخر يناسب جميع المناسبات الخاصة.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-pink-600 font-bold text-lg">250 ج.م</span>
+                        <button onclick="addToCart('عقد مرصع باللؤلؤ', 250)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
+                    </div>
+                </div>
             </div>
-            <p className="text-[#BCAEA5]">خدمة العملاء متاحة يومياً من 10 صباحاً - 10 مساءً</p>
-          </div>
-        </div>
 
-        <div className="max-w-7xl mx-auto border-t border-white/10 pt-6 text-center text-[11px] text-[#A89F91]">
-          جميع الحقوق محفوظة © {new Date().getFullYear()} لومينا - Lumina Handmade
+            <!-- منتج 2 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition">
+                <div class="h-56 bg-pink-100 flex items-center justify-center text-pink-400 font-bold">صورة المنتج</div>
+                <div class="p-5">
+                    <h4 class="font-bold text-lg mb-2">أسورة هاند ميد بحليات</h4>
+                    <p class="text-gray-500 text-sm mb-4">مصنوعة بعناية فائقة لتضفي بريقاً على إطلالتك.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-pink-600 font-bold text-lg">120 ج.م</span>
+                        <button onclick="addToCart('أسورة هاند ميد', 120)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منتج 3 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition">
+                <div class="h-56 bg-pink-100 flex items-center justify-center text-pink-400 font-bold">صورة المنتج</div>
+                <div class="p-5">
+                    <h4 class="font-bold text-lg mb-2">خاتم فضي أنيق</h4>
+                    <p class="text-gray-500 text-sm mb-4">تصميم عصري بسيط يناسب الاستخدام اليومي.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-pink-600 font-bold text-lg">90 ج.م</span>
+                        <button onclick="addToCart('خاتم فضي أنيق', 90)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-pink-600 transition">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </footer>
-    </div>
+    </main>
+
+    <!-- قسم إتمام الطلب البسيط -->
+    <section class="bg-white py-12 border-t border-gray-100">
+        <div class="max-w-xl mx-auto px-4">
+            <h3 class="text-xl font-bold mb-6 text-center">أكد طلبك الآن</h3>
+            <div id="cart-summary" class="bg-gray-50 p-4 rounded-xl mb-4 text-sm text-gray-600 text-center">
+                لم تقم باختيار أي منتج بعد.
+            </div>
+            <form onsubmit="checkout(event)" class="space-y-4">
+                <input type="text" id="name" placeholder="الاسم بالكامل" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500">
+                <input type="tel" id="phone" placeholder="رقم الهاتف (للتأكيد والواتساب)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500">
+                <textarea id="address" placeholder="العنوان التفصيلي" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-pink-500"></textarea>
+                <button type="submit" class="w-full bg-pink-600 text-white py-3 rounded-xl font-bold hover:bg-pink-700 transition">تأكيد الطلب الآن</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- الفوتر (Footer) -->
+    <footer id="contact" class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <p class="mb-2">خدمة العملاء متاحة يومياً من 10 صباحاً - 10 مساءً</p>
+        <p>&copy; <span id="year"></span> Fiorella Handmade - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <!-- سكربت بسيط لتفاعل الموقع -->
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+        let selectedProduct = "";
+
+        function addToCart(productName, price) {
+            selectedProduct = productName + " - " + price + " ج.م";
+            document.getElementById('cart-summary').innerText = "المنتج المختار: " + selectedProduct;
+            alert("تم إضافة " + productName + " إلى سلة الطلبات بنجاح!");
+        }
+
+        function checkout(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            if(!selectedProduct) {
+                alert("برجاء اختيار منتج أولاً قبل تأكيد الطلب.");
+                return;
+            }
+
+            alert("شكراً لك يا " + name + "! تم استلام طلبك بنجاح، سنتواصل معك عبر الهاتف والتطبيق لتأكيد الشحن.");
+        }
+    </script>
+</body>
+</html>
+
